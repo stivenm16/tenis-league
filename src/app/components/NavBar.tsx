@@ -25,6 +25,7 @@ async function Navbar() {
           </>
         ) : (
           <>
+            <h1>{session.user.role}</h1>
             <li>
               <Link href="/dashboard">Dashboard</Link>
             </li>

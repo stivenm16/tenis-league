@@ -35,7 +35,18 @@ export const authOptions = {
       },
     }),
   ],
+  callbacks: {
+    async session({ session, user }) {
+      const userFound = await db.user.findUnique({
+        where: {
+          email: session.user.email,
+        },
+      })
+      session.user.role = userFound.role
 
+      return session
+    },
+  },
   pages: {
     signIn: '/auth/login',
   },
