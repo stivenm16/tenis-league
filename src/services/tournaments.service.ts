@@ -1,12 +1,14 @@
-export const createTournament = async () => {
+import { dateNow } from '@/app/utils/funcs'
+
+export const createTournament = async (name) => {
   const response = await fetch('/api/tournaments', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      name: 'Torneo1',
-      date: '2023-11-10T12:00:00Z', // Ajusta la fecha según tus necesidades
+      name,
+      date: dateNow(), // Ajusta la fecha según tus necesidades
     }),
   })
 

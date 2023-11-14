@@ -34,3 +34,18 @@ export const deleteUser = async () => {
     console.log(error)
   }
 }
+export const updateUser = async (data) => {
+  try {
+    const res = await fetch('/api/some', {
+      method: 'PUT',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    return res
+  } catch (error) {
+    console.log(error)
+    throw new error()
+  }
+}
