@@ -43,7 +43,7 @@ export const authOptions = {
         },
       })
       session.user.role = userFound.role
-
+      session.user.userId = userFound.id
       return session
     },
   },

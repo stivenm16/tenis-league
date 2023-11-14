@@ -12,8 +12,8 @@ export async function POST(request) {
   try {
     const participant = await db.participant.create({
       data: {
-        user: { connect: { id: 3 } },
-        tournament: { connect: { id: 1 } },
+        user: { connect: { id: data.userId } },
+        tournament: { connect: { id: data.tournamentId } },
       },
     })
 

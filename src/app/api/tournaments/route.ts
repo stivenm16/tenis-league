@@ -16,3 +16,8 @@ export async function POST(request) {
     console.error(error)
   }
 }
+export async function GET() {
+  const getAllTournaments = await db.tournament.findMany()
+
+  return NextResponse.json(getAllTournaments)
+}

@@ -8,6 +8,7 @@ declare module 'next-auth' {
   interface User {
     role?: Role
     email: string
+    userId?: number | string
   }
 
   interface Session extends DefaultSession {

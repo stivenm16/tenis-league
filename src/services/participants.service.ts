@@ -1,18 +1,19 @@
-export const createParticipant = async () => {
+export const createParticipant = async ({ userId, tournamentId }) => {
   const response = await fetch('/api/participant', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      name: 'Torneo1',
-      date: '2023-11-10T12:00:00Z', // Ajusta la fecha según tus necesidades
+      userId,
+      tournamentId, // Ajusta la fecha según tus necesidades
     }),
   })
 
   if (response.ok) {
     const participant = await response.json()
     console.log('Participante creado:', participant)
+    return participant
   } else {
     console.error('Error al crear el torneo')
   }

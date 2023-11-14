@@ -17,3 +17,23 @@ export const createTournament = async () => {
     console.error('Error al crear el torneo')
   }
 }
+
+export const getAllTournaments = async () => {
+  try {
+    const response = await fetch('/api/tournaments', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`)
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.error('Error fetching data:', error)
+  }
+}
