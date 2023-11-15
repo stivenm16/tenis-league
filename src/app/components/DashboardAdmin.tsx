@@ -1,4 +1,8 @@
 import {
+  deleteParticipants,
+  getAllParticipants,
+} from '@/services/participants.service'
+import {
   createTournament,
   deleteTournament,
   getAllTournaments,
@@ -13,6 +17,7 @@ const DashboardAdmin = () => {
   const [tournamentName, setTournamentName] = useState('')
   const [isCreatingTournament, setIsCreatingTournament] = useState(false)
   const [tournaments, setTournaments] = useState<any[]>([])
+  const [participants, setParticipants] = useState<any[]>([])
   const [users, setUsers] = useState<any>()
   const editUser = async (userId, newUserName) => {
     try {
@@ -64,11 +69,20 @@ const DashboardAdmin = () => {
     setUsers(updatedUsers)
   }
 
+  const handleParticipants = async (userIds, tournamentId) => {
+    await deleteParticipants({
+      tournamentId: tournamentId,
+      participantIds: userIds,
+    })
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await getAllUsers()
       const tournaments = await getAllTournaments()
+      const participants = await getAllParticipants()
       setTournaments(tournaments)
+      setParticipants(participants)
       setUsers(data)
     }
 
@@ -101,6 +115,10 @@ const DashboardAdmin = () => {
                 onEdit={handleEditTournament}
                 key={tournament.id}
                 onDelete={handleDeleteTournament}
+                handleParticipants={handleParticipants}
+                participants={participants.filter(
+                  (e) => e.tournamentId === tournament.id,
+                )}
               />
             ))}
         </ul>

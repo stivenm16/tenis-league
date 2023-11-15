@@ -25,7 +25,6 @@ export async function POST(request) {
 }
 export async function DELETE(request) {
   const data = await request.json()
-  console.log(data, '<-----')
   console.log(typeof data.tournamentId)
   try {
     const tournament = await db.tournament.findUnique({

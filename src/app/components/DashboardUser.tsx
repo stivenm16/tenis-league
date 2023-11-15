@@ -1,5 +1,6 @@
 import {
   createParticipant,
+  deleteParticipants,
   getAllParticipants,
 } from '@/services/participants.service'
 import { getAllTournaments } from '@/services/tournaments.service'
@@ -7,11 +8,9 @@ import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 
 const DashboardUser = ({ userId }) => {
+  const [participants, setParticipants] = useState<any>()
+  const [tournaments, setTournaments] = useState<any>()
   const { data: session, status } = useSession()
-
-  const deleteUser = async () => {
-    const res = await deleteUser()
-  }
 
   const joinTournamentHandler = async (tournamentId) => {
     try {
@@ -26,9 +25,16 @@ const DashboardUser = ({ userId }) => {
     }
   }
 
-  const handleLeaveTournament = async (tournamentId) => {}
-  const [participants, setParticipants] = useState<any>()
-  const [tournaments, setTournaments] = useState<any>()
+  const handleLeaveTournament = async (tournamentId) => {
+    await deleteParticipants({
+      tournamentId,
+      participantIds: [session?.user.userId],
+    })
+    const participantsUpdated = participants.filter(
+      (participant) => participant.tournamentId !== tournamentId,
+    )
+    setParticipants(participantsUpdated)
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -60,7 +66,7 @@ const DashboardUser = ({ userId }) => {
             ) ? (
               <button
                 className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                onClick={() => console.log('Saliendo')}
+                onClick={() => handleLeaveTournament(tournament.id)}
               >
                 Salirse
               </button>
