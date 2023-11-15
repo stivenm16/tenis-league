@@ -4,7 +4,6 @@ import Link from 'next/link'
 
 async function Navbar() {
   const session = await getServerSession(authOptions)
-  console.log(session, 'session ')
 
   return (
     <nav className="flex justify-between items-center bg-gray-950 text-white px-24 py-3">

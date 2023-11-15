@@ -18,13 +18,11 @@ export const getAllUsers = async () => {
   }
 }
 
-export const deleteUser = async () => {
+export const deleteUser = async (data) => {
   try {
     const res = await fetch('/api/some', {
       method: 'DELETE',
-      body: JSON.stringify({
-        email: 'maleja3564@gmail.com',
-      }),
+      body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json',
       },

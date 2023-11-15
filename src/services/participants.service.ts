@@ -38,3 +38,18 @@ export const getAllParticipants = async () => {
     console.error('Error fetching data:', error)
   }
 }
+
+export const deleteParticipants = async (data) => {
+  try {
+    const res = await fetch('/api/participant', {
+      method: 'DELETE',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    return res
+  } catch (error) {
+    console.log(error)
+  }
+}

@@ -14,13 +14,10 @@ export async function PUT(request) {
       where: { id: parseInt(data.userId, 10) },
     })
 
-    // Actualiza la información del usuario con los datos proporcionados en el cuerpo de la solicitud
     const updatedUser = await db.user.update({
       where: { id: parseInt(data.userId, 10) },
       data: {
-        // email: request.body.email,
         userName: data.userName,
-        // Otros campos que desees actualizar
       },
     })
 
@@ -33,13 +30,11 @@ export async function DELETE(request) {
   try {
     const data = await request.json()
 
-    // Assuming you pass the user ID in the request body
-    const userEmail = data.email
+    const userId = data.id
 
-    // Find the user by ID
     const userFound = await db.user.findUnique({
       where: {
-        email: userEmail,
+        id: userId,
       },
     })
 
@@ -54,10 +49,9 @@ export async function DELETE(request) {
       )
     }
 
-    // Delete the user
     await db.user.delete({
       where: {
-        email: userEmail,
+        id: userId,
       },
     })
 

@@ -39,3 +39,34 @@ export const getAllTournaments = async () => {
     console.error('Error fetching data:', error)
   }
 }
+
+export const updateTournament = async (data) => {
+  try {
+    const res = await fetch('/api/tournaments', {
+      method: 'PUT',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    return res
+  } catch (error) {
+    console.log(error)
+    throw new error()
+  }
+}
+
+export const deleteTournament = async (data) => {
+  try {
+    const res = await fetch('/api/tournaments', {
+      method: 'DELETE',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    return res
+  } catch (error) {
+    console.log(error)
+  }
+}

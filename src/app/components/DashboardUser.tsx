@@ -26,18 +26,25 @@ const DashboardUser = ({ userId }) => {
     }
   }
 
+  const handleLeaveTournament = async (tournamentId) => {}
   const [participants, setParticipants] = useState<any>()
   const [tournaments, setTournaments] = useState<any>()
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getAllTournaments()
-      const participants = await getAllParticipants()
-      setTournaments(data)
-      setParticipants(participants)
+      try {
+        const [tournamentsData, participantsData] = await Promise.all([
+          getAllTournaments(),
+          getAllParticipants(),
+        ])
+        setTournaments(tournamentsData)
+        setParticipants(participantsData)
+      } catch (error) {
+        console.error('Error al obtener datos:', error)
+      }
     }
     fetchData()
-  }, [tournaments])
+  }, [])
 
   return (
     <ul className="list-disc list-inside">
