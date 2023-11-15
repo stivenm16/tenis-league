@@ -79,7 +79,7 @@ const TournamentItem = ({
             </button>
             <button
               onClick={toggleModal}
-              className="bg-red-500 text-white px-3 py-1 rounded-md"
+              className="bg-red-500 text-white px-3 ml-1 py-1 rounded-md"
             >
               Eliminar participantes
             </button>
@@ -104,11 +104,10 @@ const TournamentItem = ({
                       htmlFor={`participant-${participant.id}`}
                       className="text-black text-2xl"
                     >
-                      {participant.id}
+                      {participant.userName}
                     </label>
                   </div>
                 ))}
-                {/* Botón para eliminar */}
                 <button
                   onClick={handleDeleteParticipants}
                   className="bg-red-500 text-white px-4 py-2 rounded-md mt-4"

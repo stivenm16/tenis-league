@@ -15,6 +15,7 @@ export const createTournament = async (name) => {
   if (response.ok) {
     const tournament = await response.json()
     console.log('Torneo creado:', tournament)
+    return tournament
   } else {
     console.error('Error al crear el torneo')
   }

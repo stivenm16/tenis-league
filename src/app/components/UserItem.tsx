@@ -28,14 +28,14 @@ const UserItem = ({ user, onDelete, onEdit }) => {
             </button>
           </div>
         ) : (
-          <div className=" flex items-center justify-between w-[350px]">
+          <div className=" flex items-center justify-between w-[480px]">
             <span className="text-lg overflow-hidden overflow-ellipsis max-w-[200px]">
               {user.userName}
             </span>
             <div className="flex ">
               <button
                 onClick={() => setIsEditing(true)}
-                className="bg-blue-500 text-white px-3 py-1 rounded-md mr-2"
+                className="bg-blue-500 text-white px-3  py-1 rounded-md mr-3"
               >
                 Editar
               </button>

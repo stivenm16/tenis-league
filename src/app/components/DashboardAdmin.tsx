@@ -19,9 +19,9 @@ const DashboardAdmin = () => {
   const [tournaments, setTournaments] = useState<any[]>([])
   const [participants, setParticipants] = useState<any[]>([])
   const [users, setUsers] = useState<any>()
+
   const editUser = async (userId, newUserName) => {
     try {
-      console.log(`Editando usuario ${userId} con nuevo nombre: ${newUserName}`)
       await updateUser({ userName: newUserName, userId })
 
       setUsers((prevUsers) =>
@@ -50,9 +50,10 @@ const DashboardAdmin = () => {
   }
   const handleCreateTournament = async () => {
     if (tournamentName.trim() !== '') {
-      await createTournament(tournamentName)
+      const newTournament = await createTournament(tournamentName)
       setTournamentName('')
       setIsCreatingTournament(false)
+      setTournaments((prev) => [...prev, newTournament])
     }
   }
   const handleDeleteTournament = async (id) => {
@@ -116,9 +117,18 @@ const DashboardAdmin = () => {
                 key={tournament.id}
                 onDelete={handleDeleteTournament}
                 handleParticipants={handleParticipants}
-                participants={participants.filter(
-                  (e) => e.tournamentId === tournament.id,
-                )}
+                participants={participants
+                  .filter((e) => e.tournamentId === tournament.id)
+                  .map((e) => {
+                    const userWithId = users.find(
+                      (user) => user.id === e.userId,
+                    )
+                    const userName = userWithId
+                      ? userWithId.userName
+                      : 'Usuario no encontrado'
+
+                    return { ...e, userName }
+                  })}
               />
             ))}
         </ul>
@@ -144,7 +154,7 @@ const DashboardAdmin = () => {
         ) : (
           <button
             onClick={() => setIsCreatingTournament(true)}
-            className="bg-white text-black px-4 py-2 rounded-md mt-4"
+            className="bg-white text-black px-4 py-2 rounded-md mt-6"
           >
             Crear torneo
           </button>
