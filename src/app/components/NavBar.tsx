@@ -1,6 +1,6 @@
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { getServerSession } from 'next-auth/next'
 import Link from 'next/link'
+import { authOptions } from '../api/auth/opts'
 
 async function Navbar() {
   const session = await getServerSession(authOptions)

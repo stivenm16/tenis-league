@@ -3,6 +3,12 @@ import { useRouter } from 'next/navigation'
 // import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 
+interface Register {
+  userName: string
+  email: string
+  password: string
+  confirmPassword: string
+}
 const RegisterPage = () => {
   const {
     register,
@@ -11,23 +17,25 @@ const RegisterPage = () => {
   } = useForm()
   const router = useRouter()
 
-  const onSubmit = handleSubmit(async (data) => {
-    if (data.password !== data.confirmPassword) {
-      return alert('Passwords do not match')
-    }
-    const res = await fetch('/api/auth/register', {
-      method: 'POST',
-      body: JSON.stringify({
-        userName: data.userName,
-        email: data.email,
-        password: data.password,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    if (res.ok) {
-      router.push('/auth/login')
+  const onSubmit = handleSubmit(async (data: Register) => {
+    if (data) {
+      if (data.password !== data.confirmPassword) {
+        return alert('Passwords do not match')
+      }
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        body: JSON.stringify({
+          userName: data.userName,
+          email: data.email,
+          password: data.password,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      if (res.ok) {
+        router.push('/auth/login')
+      }
     }
   })
   console.log(errors)
@@ -54,7 +62,7 @@ const RegisterPage = () => {
 
         {errors.userName && (
           <span className="text-red-500 text-xs">
-            {errors.userName.message}
+            {`${errors.userName.message}`}
           </span>
         )}
 
@@ -73,7 +81,7 @@ const RegisterPage = () => {
           placeholder="user@email.com"
         />
         {errors.email && (
-          <span className="text-red-500 text-xs">{errors.email.message}</span>
+          <span className="text-red-500 text-xs">{`${errors.email.message}`}</span>
         )}
 
         <label htmlFor="password" className="text-slate-500 mb-2 block text-sm">
@@ -92,7 +100,7 @@ const RegisterPage = () => {
         />
         {errors.password && (
           <span className="text-red-500 text-sm">
-            {errors.password.message}
+            {`${errors.password.message}`}
           </span>
         )}
 
@@ -115,7 +123,7 @@ const RegisterPage = () => {
         />
         {errors.confirmPassword && (
           <span className="text-red-500 text-sm">
-            {errors.confirmPassword.message}
+            {`${errors.confirmPassword.message}`}
           </span>
         )}
 

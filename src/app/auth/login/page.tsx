@@ -1,9 +1,13 @@
 'use client'
-import { useForm } from 'react-hook-form'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 
+interface Login {
+  email?: string
+  password?: string
+}
 function LoginPage() {
   const {
     register,
@@ -13,21 +17,22 @@ function LoginPage() {
   const router = useRouter()
   const [error, setError] = useState(null)
 
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit = handleSubmit(async (data: Login) => {
     console.log(data)
 
-    const res = await signIn('credentials', {
-      email: data.email,
-      password: data.password,
-      redirect: false,
-    })
-
-    console.log(res)
-    if (res.error) {
-      setError(res.error)
-    } else {
-      router.push('/dashboard')
-      router.refresh()
+    if (data) {
+      const res = await signIn('credentials', {
+        email: data.email,
+        password: data.password,
+        redirect: false,
+      })
+      console.log(res)
+      if (res.error) {
+        setError(res.error)
+      } else {
+        router.push('/dashboard')
+        router.refresh()
+      }
     }
   })
 
@@ -58,7 +63,7 @@ function LoginPage() {
         />
 
         {errors.email && (
-          <span className="text-red-500 text-xs">{errors.email.message}</span>
+          <span className="text-red-500 text-xs">{`${errors.email.message}`}</span>
         )}
 
         <label htmlFor="password" className="text-slate-500 mb-2 block text-sm">
@@ -78,7 +83,7 @@ function LoginPage() {
 
         {errors.password && (
           <span className="text-red-500 text-xs">
-            {errors.password.message}
+            {`${errors.password.message}`}
           </span>
         )}
 
