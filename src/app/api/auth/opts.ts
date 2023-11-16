@@ -34,6 +34,10 @@ export const authOptions = {
     }),
   ],
   callbacks: {
+    jwt({ account, token, user, profile }) {
+      if (user) token.user = user
+      return token
+    },
     async session({ session, user }) {
       const userFound = await db.user.findUnique({
         where: {
