@@ -1,9 +1,9 @@
-import { getServerSession } from 'next-auth/next'
+'use client'
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
-import { authOptions } from '../api/auth/opts'
 
-async function Navbar() {
-  const session = await getServerSession(authOptions)
+function Navbar() {
+  const { data: session, status } = useSession()
 
   return (
     <nav className="flex justify-between items-center bg-gray-950 text-white px-24 py-3">

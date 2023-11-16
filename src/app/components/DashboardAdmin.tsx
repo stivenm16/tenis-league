@@ -37,10 +37,11 @@ const DashboardAdmin = () => {
   const handleEditTournament = async (tournamentId, newTournamentName) => {
     try {
       await updateTournament({ tournamentId, name: newTournamentName })
+      console.log(tournaments, 'tournaments <----')
       setTournaments((prevTournaments) =>
         prevTournaments.map((tournament) =>
-          tournament.tournamentId === tournamentId
-            ? { ...tournament, tournamentName: newTournamentName }
+          tournament.id === tournamentId
+            ? { ...tournament, name: newTournamentName }
             : tournament,
         ),
       )
