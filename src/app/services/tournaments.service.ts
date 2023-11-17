@@ -8,7 +8,7 @@ export const createTournament = async (name) => {
     },
     body: JSON.stringify({
       name,
-      date: dateNow(), // Ajusta la fecha según tus necesidades
+      date: dateNow(),
     }),
   })
 

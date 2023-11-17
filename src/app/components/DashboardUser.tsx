@@ -2,8 +2,8 @@ import {
   createParticipant,
   deleteParticipants,
   getAllParticipants,
-} from '@/services/participants.service'
-import { getAllTournaments } from '@/services/tournaments.service'
+} from '@/app/services/participants.service'
+import { getAllTournaments } from '@/app/services/tournaments.service'
 import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 

@@ -1,14 +1,18 @@
 import {
   deleteParticipants,
   getAllParticipants,
-} from '@/services/participants.service'
+} from '@/app/services/participants.service'
 import {
   createTournament,
   deleteTournament,
   getAllTournaments,
   updateTournament,
-} from '@/services/tournaments.service'
-import { deleteUser, getAllUsers, updateUser } from '@/services/users.service'
+} from '@/app/services/tournaments.service'
+import {
+  deleteUser,
+  getAllUsers,
+  updateUser,
+} from '@/app/services/users.service'
 import { useEffect, useState } from 'react'
 import TournamentItem from './TournamentItem'
 import UserItem from './UserItem'
