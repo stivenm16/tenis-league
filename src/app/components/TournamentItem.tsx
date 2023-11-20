@@ -28,7 +28,6 @@ const TournamentItem = ({
     setSelectedParticipants([])
   }
   const handleCheckboxChange = (userId) => {
-    // Actualiza la lista de usuarios seleccionados
     if (selectedParticipants.includes(userId)) {
       setSelectedParticipants((prevSelected) =>
         prevSelected.filter((id) => id !== userId),
@@ -40,7 +39,6 @@ const TournamentItem = ({
   const handleDeleteParticipants = async () => {
     if (selectedParticipants.length > 0) {
       handleParticipants(selectedParticipants, tournament.id)
-      // Cierra el modal después de eliminar participantes
       setShowModal(false)
     }
   }

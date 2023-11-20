@@ -18,15 +18,12 @@ function LoginPage() {
   const [error, setError] = useState(null)
 
   const onSubmit = handleSubmit(async (data: Login) => {
-    console.log(data)
-
     if (data) {
       const res = await signIn('credentials', {
         email: data.email,
         password: data.password,
         redirect: false,
       })
-      console.log(res)
       if (res.error) {
         setError(res.error)
       } else {
@@ -67,7 +64,7 @@ function LoginPage() {
         )}
 
         <label htmlFor="password" className="text-slate-500 mb-2 block text-sm">
-          Password:
+          Contraseña:
         </label>
         <input
           type="password"

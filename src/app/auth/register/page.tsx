@@ -38,7 +38,6 @@ const RegisterPage = () => {
       }
     }
   })
-  console.log(errors)
 
   return (
     <div className="h-[calc(100vh-7rem)] flex justify-center items-center">
@@ -85,7 +84,7 @@ const RegisterPage = () => {
         )}
 
         <label htmlFor="password" className="text-slate-500 mb-2 block text-sm">
-          Password:
+          Contraseña:
         </label>
         <input
           type="password"
@@ -108,7 +107,7 @@ const RegisterPage = () => {
           htmlFor="confirmPassword"
           className="text-slate-500 mb-2 block text-sm"
         >
-          Confirm Password:
+          Confirmar contraseña:
         </label>
         <input
           type="password"
@@ -128,7 +127,7 @@ const RegisterPage = () => {
         )}
 
         <button className="w-full bg-blue-500 text-white p-3 rounded-lg mt-2">
-          Register
+          Registrarse
         </button>
       </form>
     </div>

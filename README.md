@@ -56,6 +56,20 @@ Desde http://localhost:3000 se podrá acceder al menu principal, en donde se tie
 
 En el Login (Tras registrar la cuenta diligenciando el formulario de validación), basta con el correo y la contaseña para entrar al dashboard.
 
+Para la prueba de concepto se pueden utilizar las siguientes credenciales, para acceder a un perfil de Usuario:
+
+```bash
+email="user@user.com"
+password="12345"
+```
+
+Y para hacer login con un perfil tipo administrador:
+
+```bash
+email="admin@admin.com"
+password="12345"
+```
+
 ## Vista de usuario
 
 Cada que se crea una cuenta esta por defecto tiene el rol Usuario, por lo que el dasboard mostrará solamente un listado de torneos que ya han sido creados por algún otro usuario con el rol Admin, el usuario puede entrar o salir del torneo si así lo desea clickeando en el botón señalado en cada torneo.
